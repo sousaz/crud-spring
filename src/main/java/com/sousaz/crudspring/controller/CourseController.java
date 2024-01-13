@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sousaz.crudspring.model.Course;
 import com.sousaz.crudspring.repository.CourseRepository;
 
+import lombok.AllArgsConstructor;
+
 @RestController // avisa que vai conter um endpoint, uma url
 @RequestMapping("/api/courses") // endpoint
+@AllArgsConstructor // cria o construtor com todos argumentos
 public class CourseController {
 
-    private CourseRepository courseRepository;
+    private final CourseRepository courseRepository;
 
     @GetMapping // mapeando o metodo como GET
     public List<Course> list(){
-        return null;
+        return courseRepository.findAll();
     }
 }
