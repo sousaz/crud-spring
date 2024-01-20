@@ -1,5 +1,9 @@
 package com.sousaz.crudspring.model;
 
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
@@ -17,6 +21,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity // entidade que faz mapeamento no banco de dados
+@SQLDelete(sql = "UPDATE Course SET status = 'inactive' WHERE id = ?") //soft delete
+@SQLRestriction("status = 'active'") // retorna apenas cursos ativos
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,4 +40,10 @@ public class Course {
     @Pattern(regexp = "back-end|front-end")
     @Column(length = 10, nullable = false)
     private String category;
+
+    @NotNull
+    @Size(max = 10)
+    @Pattern(regexp = "active|inactive")
+    @Column(length = 10, nullable = false)
+    private String status = "active";
 }
