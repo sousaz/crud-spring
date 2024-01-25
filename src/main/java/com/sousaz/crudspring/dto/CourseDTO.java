@@ -13,5 +13,5 @@ public record CourseDTO(
     @JsonProperty("_id") Long id, 
     @NotBlank @NotNull @Size(min = 5, max = 100) String name, 
     @NotNull @Pattern(regexp = "back-end|front-end") @Size(max = 10) String category,
-    List<LessonDTO> lesson) {
+    List<LessonDTO> lessons) {
 }
