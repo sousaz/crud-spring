@@ -11,15 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sousaz.crudspring.dto.CourseDTO;
+import com.sousaz.crudspring.dto.CoursePageDTO;
 import com.sousaz.crudspring.service.CourseService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Validated
 @RestController // avisa que vai conter um endpoint, uma url
@@ -33,8 +37,9 @@ public class CourseController {
     }
 
     @GetMapping // mapeando o metodo como GET
-    public List<CourseDTO> list(){
-        return courseService.list();
+    public CoursePageDTO list(@RequestParam(defaultValue = "0") @PositiveOrZero int page, 
+        @RequestParam(defaultValue = "10") @Positive @Max(100) int size){
+        return courseService.list(page, size);
     }
 
     @GetMapping("/{id}")
