@@ -15,6 +15,6 @@ import jakarta.validation.constraints.Size;
 public record CourseDTO(
     @JsonProperty("_id") Long id, 
     @NotBlank @NotNull @Size(min = 5, max = 100) String name, 
-    @NotNull @CustomerTypeSubset(anyOf = {Category.BACKEND, Category.FRONTEND}) @Size(max = 10) String category,
+    @NotNull @CustomerTypeSubset(anyOf = {"back-end", "front-end"}) @Size(max = 10) String category,
     @NotNull @NotEmpty @Valid List<LessonDTO> lessons) {
 }

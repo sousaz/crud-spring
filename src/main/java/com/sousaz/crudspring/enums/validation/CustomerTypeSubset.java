@@ -20,11 +20,12 @@ import jakarta.validation.Payload;
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = {CustomerTypeSubSetValidator.class, StringCustomerTypeSubsetValidator.class})
+@Constraint(validatedBy = CustomerTypeSubSetValidator.class)
 public @interface CustomerTypeSubset {
-    Category[] anyOf();
+    String[] anyOf();
     String message() default "must be any of {anyOf}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
+
 

@@ -9,7 +9,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
 public class StringCustomerTypeSubsetValidator implements ConstraintValidator<CustomerTypeSubset, String> {
-    private List<Category> subset;
+    private List<String> subset;
 
     @Override
     public void initialize(CustomerTypeSubset constraint) {
@@ -18,7 +18,7 @@ public class StringCustomerTypeSubsetValidator implements ConstraintValidator<Cu
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value == null || subset.stream().anyMatch(category -> category.name().equals(value));
+        return value == null || subset.contains(value);
     }
 }
 
