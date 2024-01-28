@@ -3,7 +3,6 @@ package com.sousaz.crudspring.dto;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sousaz.crudspring.enums.Category;
 import com.sousaz.crudspring.enums.validation.CustomerTypeSubset;
 
 import jakarta.validation.Valid;

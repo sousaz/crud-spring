@@ -12,7 +12,6 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import com.sousaz.crudspring.enums.Category;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
